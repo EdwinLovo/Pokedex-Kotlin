@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Pokedex - Kotlin</string>
+    <string name="pokedex">Pokedex</string>
+</resources>

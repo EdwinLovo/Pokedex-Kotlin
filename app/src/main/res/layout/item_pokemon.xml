@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/Image_padding"
+        android:layout_height="@dimen/Image_padding"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/fotoImageView"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/nombreTextView"
+        android:text="@string/pokedex"/>
+
+</LinearLayout>
