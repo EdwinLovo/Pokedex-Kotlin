@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+@Suppress("DEPRECATED_IDENTITY_EQUALS")
 class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListener{
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -95,13 +96,21 @@ class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListen
             override fun addPokemonClick(holder: ViewHolder) {
                 holder.contenedorPokemon.setOnClickListener {
                     val infoPokemonFragment:InfoPokemonFragment = InfoPokemonFragment.newInstance(holder.nombreTextView.text.toString())
-                    fragmentManager!!.beginTransaction().replace(R.id.contenedorFragment,infoPokemonFragment).addToBackStack(null).commit()
+                    if(resources.configuration.orientation == 1){
+                        fragmentManager!!.beginTransaction().replace(R.id.contenedorFragment,infoPokemonFragment).addToBackStack(null).commit()
+                    }
+                    else if(resources.configuration.orientation == 2){
+                        fragmentManager!!.beginTransaction().replace(R.id.contenedorPokemonInfoLand,infoPokemonFragment).commit()
+                    }
                 }
             }
         }
         recyclerView.adapter = listaPokemonAdapter
         recyclerView.setHasFixedSize(true)
         var layoutManager: GridLayoutManager = GridLayoutManager(view.context,3)
+        if (resources.configuration.orientation == 2){
+            layoutManager = GridLayoutManager(view.context,2)
+        }
         recyclerView.layoutManager = layoutManager
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
