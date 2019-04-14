@@ -21,7 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListener{
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var param1: String? = null
     private var param2: String? = null
@@ -88,7 +91,14 @@ class MainFragment : Fragment() {
 
     private fun initRecyclerView(view: View){
         recyclerView = view.findViewById(R.id.recyclerView)
-        listaPokemonAdapter = ListaPokemonAdapter(view.context)
+        listaPokemonAdapter = object : ListaPokemonAdapter(view.context){
+            override fun addPokemonClick(holder: ViewHolder) {
+                holder.contenedorPokemon.setOnClickListener {
+                    val infoPokemonFragment:InfoPokemonFragment = InfoPokemonFragment.newInstance(holder.nombreTextView.text.toString())
+                    fragmentManager!!.beginTransaction().replace(R.id.contenedorFragment,infoPokemonFragment).addToBackStack(null).commit()
+                }
+            }
+        }
         recyclerView.adapter = listaPokemonAdapter
         recyclerView.setHasFixedSize(true)
         var layoutManager: GridLayoutManager = GridLayoutManager(view.context,3)

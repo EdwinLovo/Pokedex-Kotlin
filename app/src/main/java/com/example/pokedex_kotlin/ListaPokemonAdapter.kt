@@ -6,18 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.pokedex_kotlin.models.Pokemon
 
-class ListaPokemonAdapter(private val context: Context): RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder>() {
+abstract class ListaPokemonAdapter(private val context: Context): RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder>() {
 
     private val dataset:ArrayList<Pokemon>
 
     init {
         dataset = ArrayList()
     }
+
+    abstract fun addPokemonClick(holder: ViewHolder)
 
     override fun getItemCount(): Int {
         return  dataset.size
@@ -34,6 +37,8 @@ class ListaPokemonAdapter(private val context: Context): RecyclerView.Adapter<Li
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.fotoImageView)
 
+        addPokemonClick(holder)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,12 +53,14 @@ class ListaPokemonAdapter(private val context: Context): RecyclerView.Adapter<Li
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        lateinit var fotoImageView:ImageView
-        lateinit var nombreTextView:TextView
+        var fotoImageView:ImageView
+        var nombreTextView:TextView
+        var contenedorPokemon:LinearLayout
 
         init {
             fotoImageView =itemView.findViewById(R.id.fotoImageView)
             nombreTextView = itemView.findViewById(R.id.nombreTextView)
+            contenedorPokemon = itemView.findViewById(R.id.contenedorPokemon)
         }
 
     }

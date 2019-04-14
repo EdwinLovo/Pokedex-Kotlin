@@ -16,9 +16,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionListener, InfoPokemonFragment.OnFragmentInteractionListener {
 
-    val mainFragment:MainFragment = MainFragment()
+    private val mainFragment:MainFragment = MainFragment.newInstance("","")
 
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().add(R.id.contenedorFragment,mainFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.contenedorFragment,mainFragment).addToBackStack(null).commit()
     }
 
 
