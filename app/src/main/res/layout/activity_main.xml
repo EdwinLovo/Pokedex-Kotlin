@@ -7,9 +7,9 @@
         android:background="@drawable/pokemon_gradient"
         tools:context=".MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <FrameLayout
+        android:id="@+id/contenedorFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
+        android:layout_height="match_parent"></FrameLayout>
 
 </RelativeLayout>
