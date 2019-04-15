@@ -20,7 +20,7 @@ abstract class ListaPokemonAdapter(private val context: Context): RecyclerView.A
         dataset = ArrayList()
     }
 
-    abstract fun addPokemonClick(holder: ViewHolder)
+    abstract fun addPokemonClick(holder: ViewHolder, pokemonNumber:Int)
 
     override fun getItemCount(): Int {
         return  dataset.size
@@ -37,7 +37,7 @@ abstract class ListaPokemonAdapter(private val context: Context): RecyclerView.A
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.fotoImageView)
 
-        addPokemonClick(holder)
+        addPokemonClick(holder, p.number)
 
     }
 

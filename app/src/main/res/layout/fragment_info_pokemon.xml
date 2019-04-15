@@ -12,10 +12,11 @@
         android:gravity="center"
         android:id="@+id/contenedorPokemonInfo">
         <ImageView
-            android:layout_width="@dimen/Image_padding"
-            android:layout_height="@dimen/Image_padding"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/fotoImageViewInfo"
+            android:layout_marginBottom="8dp"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
@@ -23,6 +24,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/nombreTextViewInfo"
+            android:textSize="30sp"
+            android:textAllCaps="true"
             android:text="@string/pokedex"/>
 
     </LinearLayout>

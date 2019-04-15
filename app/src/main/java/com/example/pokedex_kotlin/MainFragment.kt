@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.example.pokedex_kotlin.models.Pokemon
 import com.example.pokedex_kotlin.models.PokemonRespuesta
 import com.example.pokedex_kotlin.pokeapi.PokeapiService
+import kotlinx.android.synthetic.main.item_pokemon.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-@Suppress("DEPRECATED_IDENTITY_EQUALS")
 class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListener{
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -93,9 +93,10 @@ class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListen
     private fun initRecyclerView(view: View){
         recyclerView = view.findViewById(R.id.recyclerView)
         listaPokemonAdapter = object : ListaPokemonAdapter(view.context){
-            override fun addPokemonClick(holder: ViewHolder) {
+            override fun addPokemonClick(holder: ViewHolder, pokemonNumber:Int) {
                 holder.contenedorPokemon.setOnClickListener {
-                    val infoPokemonFragment:InfoPokemonFragment = InfoPokemonFragment.newInstance(holder.nombreTextView.text.toString())
+
+                    val infoPokemonFragment:InfoPokemonFragment = InfoPokemonFragment.newInstance(holder.nombreTextView.text.toString(), pokemonNumber)
                     if(resources.configuration.orientation == 1){
                         fragmentManager!!.beginTransaction().replace(R.id.contenedorFragment,infoPokemonFragment).addToBackStack(null).commit()
                     }
@@ -107,7 +108,7 @@ class MainFragment : Fragment(), InfoPokemonFragment.OnFragmentInteractionListen
         }
         recyclerView.adapter = listaPokemonAdapter
         recyclerView.setHasFixedSize(true)
-        var layoutManager: GridLayoutManager = GridLayoutManager(view.context,3)
+        var layoutManager: GridLayoutManager = GridLayoutManager(view.context,2)
         if (resources.configuration.orientation == 2){
             layoutManager = GridLayoutManager(view.context,2)
         }
