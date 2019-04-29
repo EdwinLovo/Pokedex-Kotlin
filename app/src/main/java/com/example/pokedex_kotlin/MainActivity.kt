@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentInteractionList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().add(R.id.contenedorFragment,mainFragment).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().add(R.id.contenedorFragment,mainFragment).commit()
     }
 
 
